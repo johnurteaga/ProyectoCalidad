@@ -1,0 +1,74 @@
+﻿@model JPCSystem.Domain.AperturarRegistroNotas
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AperturarRegistroNotas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaInicioPrimTrim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaInicioPrimTrim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaFinPrimTrim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaFinPrimTrim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaInicioSegTrim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaInicioSegTrim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaFinSegTrim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaFinSegTrim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaInicioTercTrim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaInicioTercTrim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaFinTercTrim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaFinTercTrim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AñoAcademicoId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AñoAcademicoId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

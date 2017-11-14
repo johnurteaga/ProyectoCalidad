@@ -1,0 +1,11 @@
+﻿@model JPCSystem.Domain.Docente
+
+@Html.HiddenFor(model => model.Id)
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Nombres, htmlAttributes: new {@class = "control-label col-md-2"})
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Nombres, new {htmlAttributes = new {@class = "form-control"}})
+        @Html.ValidationMessageFor(model => model.ApPaterno, "", new {@class = "text-danger"})
+    </div>
+</div>

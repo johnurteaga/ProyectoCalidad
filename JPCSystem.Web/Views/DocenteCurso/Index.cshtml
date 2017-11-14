@@ -1,0 +1,85 @@
+﻿@model IEnumerable<JPCSystem.Domain.DocenteCurso>
+
+@{
+    ViewBag.Title = "Index";
+}
+@section titulo
+{
+    <h3>Reporte de Cursos</h3>
+}
+
+@section scripts
+{
+    <script src="~/Scripts/JPCSystemJs/Horarios/Horarios.js"></script>
+}
+
+@* Ventana Modal *@
+<div id="myModalHorarios" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header"style="background-color: #3c8dbc;color: #fff">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title">Modal title</h5>
+            </div>
+            <div class="modal-body"> 
+                <div id="modal-content">
+                </div>
+            </div>
+            @*<div class="modal-footer">
+                <button id="btnGuardarHorario" class="btn btn-primary">Guardar</button>
+            </div>*@
+            <div class="modal-footer">
+                <div class="col-xs-12 col-sm-12 col-lg-12" style="text-align: right">
+                    <input type="button" id="btnGuardarHorario" value="Guardar" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* ModalCurso *@
+<div id="myModalC" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title">Modal title</h5>
+            </div>
+            <div class="modal-body">
+                <div id="modal-content">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnGuardarCurso" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="form-inline">
+        <div class="col-xs-12 col-sm-12 col-lg-12">
+            @*<div class="col-lg-12">*@
+            @Html.DropDownList("IdDocente", (SelectList)@ViewBag.Docente, "Docente", new { @class = "col-lg-3" })
+            @Html.DropDownList("IdNivel", (SelectList)@ViewBag.nivel, "Nivel", new { @class = "form-control" })
+            @Html.DropDownList("IdCurso", (SelectList)@ViewBag.cursos, "Curso", new { @class = "form-control" })
+            @Html.TextBox("criterioHora", "", new { @class = "form-control", placeholder = "Grado" })
+            <button id="btnNuevoHorario" type="button" class="btn btn-info" data-toggle="modal" data-target="#myModalHorarios">Agregar Horarios <i class="fa fa-plus-circle"></i> </button>
+            <button id="btnCursoN" type="button" class="btn btn-info" data-toggle="modal" data-target="#myModalC"> Curso <i class="fa fa-plus-circle"></i> </button>
+            @*</div>*@
+        </div>
+    </div>
+</div>
+
+<br />
+
+<div class="table-responsive">
+    <div id="search_result_Horario">
+        @Html.Partial("_HorarioLista", Model)
+    </div>
+</div>

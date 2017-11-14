@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4CBC2476-39E4-4CA4-9C48-6CCFDCAD17DB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JPCSystem.Repository</RootNamespace>
+    <AssemblyName>JPCSystem.Repository</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Activities" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AlumnoRepository.cs" />
+    <Compile Include="ApoderadoRepository.cs" />
+    <Compile Include="AnioEscolarRepository.cs" />
+    <Compile Include="AsistenciaRepository.cs" />
+    <Compile Include="CursoRepository.cs" />
+    <Compile Include="DepartamentoRepository.cs" />
+    <Compile Include="DistritoRepository.cs" />
+    <Compile Include="DocenteCursoRepository.cs" />
+    <Compile Include="DocenteRepository.cs" />
+    <Compile Include="DocumentoRepository.cs" />
+    <Compile Include="GradoRepository.cs" />
+    <Compile Include="IAlumnoRepository.cs" />
+    <Compile Include="IApoderadoRepository.cs" />
+    <Compile Include="IAnioEscolarRepository.cs" />
+    <Compile Include="IAsistenciaRepository.cs" />
+    <Compile Include="ICursoRepository.cs" />
+    <Compile Include="IDepartamentoRepository.cs" />
+    <Compile Include="IDistritoRepository.cs" />
+    <Compile Include="IDocenteCursoRepository.cs" />
+    <Compile Include="IDocenteRepository.cs" />
+    <Compile Include="IDocumentoRepository.cs" />
+    <Compile Include="IGradoRepository.cs" />
+    <Compile Include="IMasterRepository.cs" />
+    <Compile Include="IMatriculaRepository.cs" />
+    <Compile Include="INivelRepository.cs" />
+    <Compile Include="INotasRepository.cs" />
+    <Compile Include="IRegNotasRepository.cs" />
+    <Compile Include="ISeccionRepository.cs" />
+    <Compile Include="ITrimestreRepository.cs" />
+    <Compile Include="IUbigeoRepository.cs" />
+    <Compile Include="IUsuarioRepository.cs" />
+    <Compile Include="MatriculaRepository.cs" />
+    <Compile Include="IPromedioRepository.cs" />
+    <Compile Include="JpcSystemDbContext.cs" />
+    <Compile Include="MasterRepository.cs" />
+    <Compile Include="Migrations\201708251253093_InitialDatabase.cs" />
+    <Compile Include="Migrations\201708251253093_InitialDatabase.Designer.cs">
+      <DependentUpon>201708251253093_InitialDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="NivelRepository.cs" />
+    <Compile Include="NotasRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PromedioRepository.cs" />
+    <Compile Include="RegNotasRepository.cs" />
+    <Compile Include="SeccionRepository.cs" />
+    <Compile Include="TrimestreRepository.cs" />
+    <Compile Include="UbigeoRepository.cs" />
+    <Compile Include="UsuarioRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JPCSystem.Domain\JPCSystem.Domain.csproj">
+      <Project>{db3ad8ff-cb04-452d-b48c-13dbef1b5b11}</Project>
+      <Name>JPCSystem.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201708251253093_InitialDatabase.resx">
+      <DependentUpon>201708251253093_InitialDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

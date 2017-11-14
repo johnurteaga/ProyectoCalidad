@@ -1,0 +1,81 @@
+﻿@model JPCSystem.Domain.Docente
+
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+}
+
+<div>
+    <h4>Docente :
+            @Html.DisplayFor(model => model.Nombres) , 
+            @Html.DisplayFor(model => model.ApPaterno)
+            @Html.DisplayFor(model => model.ApMaterno)
+    </h4>
+    <hr />
+    <dl class="w3-row-padding">
+        <dt>
+            Número de Documento: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NroDocumento)
+        </dd>
+        </br>
+        <dt>
+           Direccion:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Direccion)
+        </dd>
+        </br>
+        <dt>
+          Fecha de Nacimiento:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaNacimiento)
+        </dd>
+        </br>
+        <dt>
+           Genero:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Genero)
+        </dd>
+        </br>
+        <dt>
+        Número de Teléfono:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+        </br>
+        <dt>
+           Años de Experiencia: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AniosExperiencia)
+        </dd>
+        </br>
+        <dt>
+           Estado Civil
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstadoCivil)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.DocumentoId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DocumentoId)
+        </dd>*@
+
+    </dl>
+</div>

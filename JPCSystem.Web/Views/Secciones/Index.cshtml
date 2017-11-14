@@ -1,0 +1,59 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<JPCSystem.Domain.Seccion>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@section titulo{
+    <h3>Reporte de Aulas</h3>
+}
+
+<style>
+    table td:nth-child(2) {
+        width: 110px;
+    }
+</style>
+
+<div class="row">
+    <div class="col-sm-12">      
+        <div class="form-inline">
+            <div class="form-group">
+                <input placeholder="Buscar ( Nivel, Grado , Sección)" class="form-control col-lg-12" type="text" name="criterioSeccion" id="criterioSeccion" value="" />
+                <button type="button" class="btn btn-primary nuevaSeccion" data-toggle="modal" data-target="#myModalSeccion"><i class="fa fa-plus"></i></button>
+            </div>
+        </div>
+        <br/>
+        <div class="table-responsive">
+            <div id="search_result_Seccion">
+                @Html.Partial("_Index", Model)
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="myModalSeccion" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title">Modal title</h5>
+            </div>
+            <div class="modal-body">
+                <p>Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer">
+                <div class="col-xs-12 col-sm-12 col-lg-12" style="text-align: right">
+                    <input type="button" id="btnGuardaSecc" value="Guardar" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+<script src="~/Scripts/JPCSystemJs/Secciones/Secciones.js"></script>
+}

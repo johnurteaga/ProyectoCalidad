@@ -1,0 +1,65 @@
+﻿@model IEnumerable<JPCSystem.Domain.Grado>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@section titulo
+{
+    <h2>Lista de Grados</h2>
+}
+
+<div class="form-group">
+    <input placeholder="Buscar (Nivel o Grado)" class="form-control" type="text" name="criterio" id="criterio" value="" />
+    <button class="btn btn-primary nuevoGrado" data-toggle="modal" data-target="#myModalGrado"><span class="fa fa-plus"></span> </button>
+    
+</div>
+
+<div id="search_result" class="form-group table-responsive">
+    @Html.Partial("_Index")
+</div>
+
+@section scripts
+    {
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#criterio").keyup(function () {
+                var criterio = $(this).val();
+                $.post("/Grados/Index/?criterio=" + criterio)
+                    .done(
+                    function (data) {
+                        $("#search_result").html(data);
+                    });
+            });
+
+            $(".nuevoGrado").click(function () {
+                $("#myModalGrado").find('.modal-body').load("/Grados/Create");
+                id = 0;
+            });
+
+            $(".btnEditarGrado").click(function (eve) {
+                $("#myModalGrado").modal("show");
+                id = $(this).data("id");
+                $("#myModalGrado").find(".modal-title").html("Editar Grado");
+                $("#myModalGrado").find('.modal-body').load("/Grados/Edit/" + $(this).data("id"));
+            });
+
+            //$("#criterioNivelId").change(function() {
+            //    var criterio = $(this).val();
+            //    var criterio2 = $("#criterio").val();
+            //    console.log(criterio2);
+            //    $.post("/Grados/ComboIdex/?criterio=" + criterio+"&criterio2="+criterio2)
+            //        .done(
+            //            function (data) {
+            //                $("#search_result").html(data);
+            //            });
+            //});
+
+        });
+
+    </script>
+}
+
+

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<JPCSystem.Domain.Asistencia>
+
+<table class="table">
+    <tr>
+        <th>
+            Alumno
+        </th>
+        <th>
+            Asistencia
+        </th>
+        <th>
+            Fecha de Asistencia
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Alumno.Nombre) ,
+                @Html.DisplayFor(modelItem => item.Alumno.ApPaterno)
+                @Html.DisplayFor(modelItem => item.Alumno.ApMaterno)
+            </td>
+            <td>
+                @if (item.Estado == true)
+                {
+                    <span class="label label-default">A</span>
+                }
+                @if (item.Estado == false)
+                {
+                    <span class="label label-danger">F</span>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaAsistencia)
+            </td>
+            
+            <td>
+                <a href="#" onclick="ediatarAsistencia(@item.Id)"><span class="fa fa-pencil"></span> Editar</a>
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+<script type="text/javascript">
+    function ediatarAsistencia(id) {
+        
+        $.get("/Asistencia/Edit/?id=" + id)
+            .done(function (data) {
+                if (data === "error") {
+                    toastr.warning("No se puede modificar la asitencia, ya que la fecha de modificación a caducado.");
+                } else {
+                    $("#myModalEdit").modal("show");
+                    $("#myModalEdit").find(".modal-title").html("Editar Asistencia");
+                    $("#myModalEdit").find(".modal-body").html(data);
+                }
+            });
+    }
+</script>
+

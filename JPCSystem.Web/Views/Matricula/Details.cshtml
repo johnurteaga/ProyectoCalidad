@@ -1,0 +1,74 @@
+﻿@model JPCSystem.Domain.Matricula
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Matricula</h4>
+    <hr />
+    <dl class="dl-horizontal col-md-6">
+        <dt>
+            Fecha de Matricula: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaMatricula)
+        </dd>
+
+        <dt>
+            Año Academico: 
+        </dt>
+
+        <dd>
+            @ViewBag.anio
+        </dd>
+
+        <dt>
+            Alumno: 
+        </dt>
+
+        <dd>
+            @ViewBag.al
+        </dd>
+
+        <dt>
+           Apoderado: 
+        </dt>
+
+        <dd>
+            @ViewBag.apoderado
+        </dd>
+
+        <dt>
+            Nivel
+        </dt>
+
+        <dd>
+            @ViewBag.nivel
+        </dd>
+
+        <dt>
+            Grado
+        </dt>
+
+        <dd>
+            @ViewBag.grado
+        </dd>
+
+        <dt>
+            Seccion:
+        </dt>
+
+        <dd>
+            @ViewBag.seccion
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id },new {@class="btn btn-primary"})
+    @Html.ActionLink("Back to List", "Index",new {}, new { @class = "btn btn-success" })
+</p>

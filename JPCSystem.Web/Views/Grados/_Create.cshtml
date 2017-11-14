@@ -1,0 +1,106 @@
+﻿@model JPCSystem.Domain.Grado
+
+@{
+    Layout = null;
+    var id = 0;
+}
+
+<style>
+    input, select, textarea {
+        max-width: 403px;
+    }
+
+</style>
+@using (Html.BeginForm(null, null, FormMethod.Post, htmlAttributes: new { id = "formGrado"}))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal" role="form">
+        @Html.ValidationSummary(true, message: "", htmlAttributes: new { @class = "text-danger" })
+
+        <div class="col-lg-4 alerta">
+            <div class="alert alert-dismissible alert-danger">
+                El grado ya ha sido registrado...!
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(expression: "Nivel", htmlAttributes: new { @class = "control-label col-xs-3 col-sm-3 col-lg-3" })
+            <div class="col-xs-9 col-sm-9 col-lg-9">
+                @*@Html.EditorFor(model => model.NivelId, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.DropDownList("NivelId", (SelectList)ViewBag.niveles,"Seleccione...", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(expression: model => model.NivelId, validationMessage: "", htmlAttributes: new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(expression: "Grado", htmlAttributes: new { @class = "control-label col-xs-3 col-sm-3 col-lg-3" })
+            <div class="col-xs-9 col-sm-9 col-lg-9">
+                @Html.EditorFor(expression: model => model.NombreGrado, additionalViewData: new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.DropDownList("NombreGrado", (SelectList) ViewBag.grados, "", new {@class = "form-control"})*@
+                @Html.ValidationMessageFor(expression: model => model.NombreGrado, validationMessage: "", htmlAttributes: new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.Label(expression: "N° Alumnos", htmlAttributes: new { @class = "control-label col-xs-3 col-sm-3 col-lg-3" })
+            <div class="col-xs-9 col-sm-9 col-lg-9">
+                @Html.EditorFor(expression: model => model.numAlumnos, additionalViewData: new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(expression: model => model.numAlumnos, validationMessage: "", htmlAttributes: new { @class = "text-danger" })
+            </div>
+        </div>*@
+    </div>
+}
+
+
+
+<script type="text/javascript">
+
+    @*if (@id == null) {
+        console.log("Nulo");
+    } else {
+        console.log(@id);
+    }*@
+    console.log(id);
+    limpiar();
+    $(".alerta").addClass("hidden");
+    $("#btnguardarGrado").on("click",
+        function () {
+            var grado = $("#formGrado").serialize();
+            $.post("/Grados/Create/?id="+id,
+                grado
+            ).done(function (data) {
+                
+                if (data === "false") {
+                    $(".alerta").removeClass("hidden");
+                } else {
+                    $("#myModalGrado").modal("hide");
+                    $("div.modal-backdrop.in").remove();
+                    $("#search_result").html(data);
+                    //location.reload();
+                }
+            });
+
+        });
+
+    $("#NivelId").on("change", function () {
+        limpiar();
+       // $("#NombreGrado").val($(this).text());
+        var nivel = $("#NivelId").val();
+
+        $.get('/Grados/GetGrados/?nivelId=' + nivel,  // url
+            function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    $("#NombreGrado").append('<option value="'
+                        + data[i].NombreGrado + '">'
+                        + data[i].NombreGrado + '</option>');
+                }
+            });
+    });
+
+    function limpiar() {
+        $("#NombreGrado").empty();
+        $("#NombreGrado").append('<option value="0">Seleccione...</option>');
+    }
+
+</script>
+

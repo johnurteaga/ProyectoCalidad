@@ -1,0 +1,48 @@
+﻿@model IEnumerable<JPCSystem.Domain.AperturarRegistroNotas>
+@{
+    Layout = null;
+}
+<table class="table">
+    <tr>
+        <th>
+            Año
+        </th>
+        <th>
+            Trimestre
+        </th>
+        <th>
+            Fecha
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AñoAcademico.Anio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Trimestre.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaInicioPrimTrim) a
+                @Html.DisplayFor(modelItem => item.FechaFinPrimTrim)
+            </td>
+
+            <td>
+                <div class="btn-group">
+                    <a onclick="editRegistro(@item.Id)" title="Edit" style="margin-right: 3px;">
+                        <i class="fa fa-pencil"></i>
+                        <span class="sr-only">Edit</span>
+                    </a>
+                    <a onclick="DetailsRegistro(@item.Id)" title="Details" style="margin-right: 3px;">
+                        <i class="fa fa-list-alt"></i>
+                        <span class="sr-only">Details</span>
+                    </a>
+                </div>
+            </td>
+        </tr>
+    }
+
+</table>

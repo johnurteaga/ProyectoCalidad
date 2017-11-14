@@ -1,0 +1,87 @@
+﻿@model JPCSystem.Domain.AperturarRegistroNotas
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<form id="ApRegNotas">
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.AñoAcademicoId)
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-success" style="text-align: center" id="" role="alert">
+                    Año Academico: <strong>@Model.nombreAño</strong>
+                </div>
+                <h3 style="line-height: 1.2"></h3>
+
+                @Html.Label("Timestre", new {htmlAttributes = new {@class = "form-control"}})
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.DropDownListFor(model => model.TrimestreId, (SelectList) ViewBag.trimestre, "[-- Selecciona Documento --]", new {@class = "form-control"})
+                        @Html.ValidationMessageFor(model => model.TrimestreId, "", new {@class = "text-danger"})
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Fecha de Trimestre</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-lg-12">
+                                <div class="form-group">
+                                    @Html.Label("Inicio", htmlAttributes: new { @class = "col-xs-12 col-sm-3 col-lg-3" })
+                                    <div class="col-xs-12 col-sm-10 col-lg-10">
+                                        <div class='input-group date' id='datetimepicker1'>
+                                            @Html.EditorFor(model => model.FechaInicioPrimTrim, new { htmlAttributes = new { @class = "form-control" } })
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+
+                                        @Html.ValidationMessageFor(model => model.FechaInicioPrimTrim, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-12 col-lg-12">
+                                <div class="form-group">
+                                    @Html.Label("Fin ", htmlAttributes: new { @class = "col-xs-12 col-sm-3 col-lg-3" })
+                                    <div class="col-xs-12 col-sm-10 col-lg-10">
+                                        <div class='input-group date' id='datetimepicker2'>
+                                            @Html.EditorFor(model => model.FechaFinPrimTrim, new { htmlAttributes = new { @class = "form-control" } })
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.FechaFinPrimTrim, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-12 col-lg-12">
+                                <div class="form-group">
+                                    @Html.Label("Estado ", htmlAttributes: new { @class = "col-xs-12 col-sm-2 col-lg-2" })
+                                    <div class="col-xs-12 col-sm-10 col-lg-10">
+                                        @Html.EditorFor(model => model.estado)
+                                        @Html.ValidationMessageFor(model => model.estado, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

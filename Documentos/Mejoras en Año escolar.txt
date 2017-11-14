@@ -1,0 +1,7 @@
+Año Escolar: 
+Requerimientos
+	- el año escolar deve de ser el ultimo año del servidor
+	-inicio de clases y fin de clases solo pertenecen al mismo año 		escolar
+	-el inicio y fin y Exteporanea de matricula pertenece al mismo 		año escolar
+	
+	

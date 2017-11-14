@@ -1,0 +1,27 @@
+﻿@model JPCSystem.Web.Models.Repostes
+
+<dl class="dl-horizontal col-sx-12 col-sm-12 col-lg-12">
+    <dt>
+        Total de Alumnos
+    </dt>
+
+    <dd style="text-align: right">
+        <span class="w3-badge">@Html.DisplayFor(model => model.TotalAlumnos)</span>
+    </dd>
+    <hr/>
+    <dt>
+       Asistencias 
+    </dt>
+
+    <dd style="text-align: right">
+        <span class="w3-badge w3-green">@Html.DisplayFor(model => model.TotalA)</span>
+    </dd>
+    <hr/>
+    <dt>
+        Faltas
+    </dt>
+
+    <dd style="text-align: right">
+        <span class="w3-badge w3-red">@Html.DisplayFor(model => model.TotalD)</span>
+    </dd>
+</dl>

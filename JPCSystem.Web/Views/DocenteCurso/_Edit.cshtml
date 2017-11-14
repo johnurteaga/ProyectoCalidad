@@ -1,0 +1,209 @@
+﻿@model JPCSystem.Domain.DocenteCurso
+
+<script type="text/javascript">
+$(document).ready(function () {
+    $(function () {
+        $('#datetimepicker3').datetimepicker({
+            format: 'LT'
+        });
+    });
+
+    $(function () {
+        $('#datetimepicker2').datetimepicker({
+            format: 'LT'
+        });
+    });
+
+
+    $('#DocenteId').selectize({
+        create: false,
+        sortField: 'text',
+    });
+
+    $("#NivelId").change(function () {
+        $("#GradoId").empty();
+        $("#CursoId").empty();
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("GetNivel")',
+            dataType: 'json',
+            data: { nivelId: $("#NivelId").val() },
+            success: function (data) {
+                for (var i = 0; i < data.grado.length; i++) {
+                    $("#GradoId").append('<option value="'
+                        + data.grado[i].Id + '">'
+                        + data.grado[i].NombreGrado + '</option>');
+                }
+
+                for (var i = 0; i < data.curso.length; i++) {
+                    $("#CursoId").append('<option value="'
+                        + data.curso[i].Id + '">'
+                        + data.curso[i].NombreCurso + '</option>');
+                }
+            },
+            error: function (ex) {
+                alert('Error al cargar los Grados y Cursos' + ex);
+            }
+        });
+        return false;
+    });
+
+    $("#GradoId").change(function () {
+        $("#SeccionId").empty();
+        $("#SeccionId").append('<option value="Seleccione">Seleccione..</option>');
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("GetSeccion")',
+            dataType: 'json',
+            data: { gradoId: $("#GradoId").val() },
+            success: function (data) {
+                $.each(data,
+                    function (i, data) {
+                        $("#SeccionId").append('<option value="'
+                            + data.Id + '">'
+                            + data.NombreSeccion + '</option>');
+                    });
+            },
+            error: function (ex) {
+                alert('Error al cargar los Grados y Cursos' + ex);
+            }
+        });
+
+        return false;
+    });
+});
+
+</script>
+
+<form id="formHorarios">
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.HiddenFor(model => model.Id)
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class=" selectize-control col-xs-12 col-sm-12 col-lg-12">
+                        <div class="form-group">
+                            @Html.Label("Docente", htmlAttributes: new { @class = "col-xs-12 col-sm-12 col-lg-12" })
+                            <div class="col-md-12">
+                                @Html.DropDownListFor(model => model.DocenteId, new SelectList(@ViewBag.Docente, "Id", "NombreCompleto"), "Seleccione...", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.DocenteId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-3 col-lg-3">
+                        <div class="form-group">
+                            @Html.Label("Nivel", htmlAttributes: new { @class = "col-xs-12 col-sm-12 col-lg-12" })
+                            <div class="col-md-12">
+                                @Html.DropDownList("NivelId", (SelectList)ViewBag.nivel, "Seleccione...", new { @class = "form-control" })
+                                @Html.ValidationMessage("NivelId", "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-3 col-lg-3">
+                        <div class="form-group">
+                            @Html.Label("Grado", htmlAttributes: new { @class = "col-xs-12 col-sm-12 col-lg-12" })
+                            <div class="col-md-12">
+                                @Html.DropDownList("GradoId", (SelectList)ViewBag.grado, null, new { @class = "form-control" })
+                                @Html.ValidationMessage("GradoId", "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-3 col-lg-3">
+                        <div class="form-group">
+                            @Html.Label("Seccion", htmlAttributes: new { @class = "col-xs-12 col-sm-12 col-lg-12" })
+                            <div class="col-md-12">
+                                @Html.DropDownList("SeccionId", (SelectList)ViewBag.seccion, null, new { @class = "form-control" })
+                                @Html.ValidationMessage("SeccionId", "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-xs-12 col-sm-3 col-lg-3">
+                        <div class="form-group">
+                            @Html.Label("Curso", htmlAttributes: new { @class = "col-xs-12 col-sm-12 col-lg-12" })
+                            <div class="col-md-12">
+                                @Html.DropDownListFor(model => model.CursoId, (SelectList)ViewBag.Curso, "Seleccione...", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.CursoId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4 col-lg-4">
+                        <div class="form-group">
+                            @Html.Label("Dia ", htmlAttributes: new { @class = "col-xs-12 col-sm-12 col-lg-12" })
+                            <div class="col-md-12">
+                                @*@Html.DropDownList("Dia", (SelectList)ViewBag.dia, "Seleccione...", new { @class = "form-control" })*@
+                                <select class="form-control" data-val="true" id="Dia" name="Dia">
+                                    <option value="0">Seleccione...</option>
+                                    <option value="Lunes">Lunes</option>
+                                    <option value="Martes">Martes</option>
+                                    <option value="Miercoles">Miercoles</option>
+                                    <option value="Jueves">Jueves</option>
+                                    <option value="Viernes">Viernes</option>
+                                </select>
+                                @Html.ValidationMessageFor(model => model.Dia, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-lg-4">
+                        <div class="form-group">
+                            @Html.Label("Hora de Inicio", htmlAttributes: new { @class = "col-xs-12 col-sm-12 col-lg-12" })
+                            <div class="col-md-12">
+                                <div class='input-group date' id='datetimepicker3'>
+                                    @Html.EditorFor(model => model.HoraInicio, new { htmlAttributes = new { @class = "form-control" } })
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-time"></span>
+                                    </span>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.HoraInicio, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-lg-4">
+                        <div class="form-group">
+                            @Html.Label("Hora de Fin", htmlAttributes: new { @class = "col-xs-12 col-sm-12 col-lg-12" })
+                            <div class="col-md-12">
+                                <div class="input-group date" id='datetimepicker2'>
+                                    @Html.EditorFor(model => model.HoraFin, new { htmlAttributes = new { @class = "form-control" } })
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-time"></span>
+                                    </span>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.HoraFin, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</form>

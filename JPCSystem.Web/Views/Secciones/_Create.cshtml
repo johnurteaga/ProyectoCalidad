@@ -1,0 +1,69 @@
+﻿@model JPCSystem.Domain.Seccion
+
+@{
+    Layout = null;
+}
+@using (Html.BeginForm(null,null,FormMethod.Post,htmlAttributes:new {id = "formSeccion"})) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
+        <div class="col-xs-12 col-sm-12 col-lg-12 alertaSecc hidden">
+            <div class="alert alert-dismissible alert-danger">
+                El grado ya ha sido registrado...!
+            </div>
+        </div>
+        
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.Label("Nivel", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.NivelId, (SelectList)ViewBag.niveles,"Seleccione...", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.GradoId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Grado", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.GradoId,(SelectList)ViewBag.grados, null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.GradoId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.Label("Sección", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NombreSeccion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NombreSeccion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+      
+    </div>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#NivelId").change(function () {
+            limpiarGrado();
+            $.post("/Secciones/GetNivel/?id=" + $(this).val())
+                .done(function (data) {
+                    
+                    for (var i = 0; i < data.length; i++) {
+                        $("#GradoId").append('<option value="'
+                            + data[i].Id + '">'
+                            + data[i].NombreGrado + '</option>');
+                    }
+                    
+                });
+        });
+        
+        function limpiarGrado() {
+            $("#GradoId").empty();
+            $("#GradoId").append('<option value="0">Selecione...</option>');
+        };
+    });
+</script>

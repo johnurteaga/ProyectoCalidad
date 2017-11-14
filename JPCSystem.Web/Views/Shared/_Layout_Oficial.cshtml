@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/w3.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-datepicker.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="row">
+
+        <div class="col-md-6">
+            <div class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-next"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        @Html.ActionLink("JPCSystem", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                            <li>@Html.ActionLink("Matriculas", "Index", "Matricula")</li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gestionar Usuarios  <span class="glyphicon glyphicon-user"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Alumno", "Index", "Alumno")</li>
+                                    <li>@Html.ActionLink("Apoderados", "Index", "Apoderado")</li>
+                                    <li>@Html.ActionLink("Docente", "Index", "Docente")</li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Configuracion <span class="glyphicon glyphicon-cog"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Año Escolar", "Index", "AnioEscolar")</li>
+                                    <li>@Html.ActionLink("Gestionar Cursos", "Index", "Curso")</li>
+                                    <li>@Html.ActionLink("Aperturar Registro de Notas", "Index", "ApRegNotas")</li>
+                                    <li>@Html.ActionLink("Asistencia", "Index", "Asistencia")</li>
+                                    <li>@Html.ActionLink("Registro de Notas", "Index", "Notas")</li>
+                                    <li>@Html.ActionLink("Gestionar Dictado de Cursos", "Index", "DocenteCurso")</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        @Html.Partial("_LoginPartial")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script type="text/javascript" src="~/Scripts/moment.js"></script>
+    <script type="text/javascript" src="~/Scripts/moment-with-locales.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.es.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<JPCSystem.Domain.Nivel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    table td:nth-child(2) {
+        width: 110px;
+    }
+</style>
+
+@section titulo{
+    <h3>Niveles</h3>
+}
+
+<p>
+    <button type="button" class="btn btn-primary nuevoNivel" data-toggle="modal" data-target="#myModalNivel">Agregar Nivel</button>
+</p>
+
+
+<div  id="tablaNivel" class="table-responsive">
+    <div id="search_Nivel">
+        @Html.Partial("_Index")
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="myModalNivel" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content" id="modal-content">
+            <div class="modal-header" style="background-color: #3c8dbc;color: #fff">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Agregar Nivel</h4>
+            </div>
+            <div class="modal-body" id="editModalBodyID">
+            </div>
+            <div class="modal-footer">
+                <div class="col-xs-12 col-sm-12 col-lg-12" style="text-align: right">
+                    <input type="button" id="btnGuardaNivel" value="Guardar" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="~/Scripts/JPCSystemJs/Nivel/Nivel.js"></script>
+}

@@ -1,0 +1,110 @@
+﻿@model JPCSystem.Domain.Apoderado
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<br/>
+<div>
+    <h4>
+        @Html.DisplayFor(model => model.ApPaterno) @Html.DisplayFor(model => model.ApMaterno),
+        @Html.DisplayFor(model => model.Nombres)
+    </h4>
+    <hr />
+    <dl class="dataTables_info">
+        <dt>
+            Número de documento: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NroDocumento)
+        </dd>
+        </br>
+        <dt>
+          Dirección: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Direccion)
+        </dd>
+        </br>
+        <dt>
+            Fecha de Nacimiento:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaNacimiento)
+        </dd>
+        </br>
+        <dt>
+            Correo: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Correo)
+        </dd>
+        </br>
+        <dt>
+           Genero: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Genero)
+        </dd>
+        </br>
+        @*<dt>
+            @Html.DisplayName("DepartamentoId")
+        </dt>
+
+        <dd>
+            @Html.Display("NombreDepartamento")
+        </dd>
+
+        <dt>
+            @Html.DisplayName("ProvinciaId")
+        </dt>
+
+        <dd>
+            @Html.Display("NombreProvincia")
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Distrito")
+        </dt>
+
+        <dd>
+            @Html.Display("NombreDistrito")
+        </dd>*@
+
+        <dt>
+            Número de Teléfono: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.DocumentoId)
+        </dt>
+
+       <dd>
+        @Html.DisplayFor(model => model.DocumentoId)
+    </dd>
+               </br>
+        *@
+        </br>
+        <dt>
+           Lugar de Trabajo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LugarTrabajo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id },new {@class="btn btn-primary"})
+    @Html.ActionLink("Back to List", "Index",new {},new {@class="btn btn-success"})
+</p>

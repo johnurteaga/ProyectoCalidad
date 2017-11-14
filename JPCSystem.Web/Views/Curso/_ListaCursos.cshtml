@@ -1,0 +1,54 @@
+﻿@model IEnumerable<JPCSystem.Domain.Curso>
+
+<table class="table">
+    <tr>
+        <th>
+            Curso
+        </th>
+        <th>
+            Nivel
+        </th>
+        <th>
+            Grado
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreCurso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Grado.Nivel.NombreNivel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Grado.NombreGrado)
+            </td>
+            <td>
+                <span onclick="EditCurso(@item.Id)" style="cursor: pointer"><i class="fa fa-pencil"></i> </span> &nbsp
+                <span onclick="DeleteCurso(@item.Id)" style="cursor: pointer"><i class="fa fa-trash"></i> </span>
+            </td>
+        </tr>
+    }
+
+</table>
+
+<script>
+    function DeleteCurso(id) {
+        bootbox.confirm("Esta seguro de Eliminar esta Sección?",
+            function (result) {
+                if (result) {
+                    $.post("/Curso/Delete/" + id, function (data) {
+                        if (data.rpt === "ok") {
+                            toastr.success("Eliminado con exito!");
+                            $("#search_result_Curso").html(data.info);
+                        }
+                        
+                    });
+                }
+            }
+        );
+    };
+</script>

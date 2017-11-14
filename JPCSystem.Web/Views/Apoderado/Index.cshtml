@@ -1,0 +1,101 @@
+﻿@model IEnumerable<JPCSystem.Domain.Apoderado>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Apoderados</h2>
+
+<br/>
+@using (Html.BeginForm())
+{
+    <div class="form-inline">
+        <div class="form-group">
+            @Html.Label("Numero de Documento: ")
+            @Html.TextBox("criterio", "", new { @class = "form-control" })
+            <button class="btn btn-info" id="criterio">Buscar</button>
+            @Html.ActionLink("Nuevo Apoderado", "Create", new { }, new { @class = "btn btn-danger" })
+        </div>
+    </div>
+}
+<br/>
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>
+                Documento
+            </th>
+            <th>
+                Nombre Apoderado
+            </th>
+            <th>
+                Edad
+            </th>
+            <th>
+                Direccion
+            </th>
+            <th>
+                Correo
+            </th>
+            <th>
+                Telefono
+            </th>
+            <th>
+                Lugar de Trabajo
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NroDocumento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApPaterno)
+                    @Html.DisplayFor(modelItem => item.ApMaterno),
+                    @Html.DisplayFor(modelItem => item.Nombres)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Edad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Direccion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Correo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefono)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LugarTrabajo)
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <a href="@Url.Action("Edit", new { id = item.Id })" title="Edit"
+                           style="margin-right: 3px;"
+                           class="btn btn-warning btn-sm">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                            <span class="sr-only">Edit</span>
+                        </a>
+                        <a href="@Url.Action("Details", new { id = item.Id })" title="Details"
+                           style="margin-right: 3px;"
+                           class="btn btn-primary btn-sm">
+                            <i class="glyphicon glyphicon-list-alt"></i>
+                            <span class="sr-only">Details</span>
+                        </a>
+                        <a href="@Url.Action("Delete", new { id = item.Id })" title="Delete"
+                           style="margin-right: 3px;"
+                           class="btn btn-danger btn-sm">
+                            <i class="glyphicon glyphicon-trash"></i>
+                            <span class="sr-only">Delete</span>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

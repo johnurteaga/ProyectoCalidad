@@ -1,0 +1,60 @@
+﻿@model IEnumerable<JPCSystem.Domain.DocenteCurso>
+
+<table class="table">
+    <tr>
+        <th>
+            Docente
+        </th>
+        <th>
+            Aula
+        </th>
+        <th>
+            Curso
+        </th>
+        <th>
+            Dia
+        </th>
+        <th>
+            Hora
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Docente.NombreCompleto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Seccion.Grado.Nivel.NombreNivel) -
+                @Html.DisplayFor(modelItem => item.Seccion.Grado.NombreGrado) -
+                @Html.DisplayFor(modelItem => item.Seccion.NombreSeccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Curso.NombreCurso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoraInicio)-
+                @Html.DisplayFor(modelItem => item.HoraFin)
+            </td>
+
+            <td>
+                <div class="btn-group">
+                    <a  onclick="editHorario(@item.Id)" title="Edit" style="margin-right: 3px;">
+                        <i class="fa fa-pencil"></i>
+                        <span class="sr-only">Edit</span>
+                    </a>
+                    <a onclick="DetailsHorario(@item.Id)" title="Details" style="margin-right: 3px;">
+                        <i class="fa fa-list-alt"></i>
+                        <span class="sr-only">Details</span>
+                    </a>
+                </div>
+            </td>
+        </tr>
+    }
+
+</table>

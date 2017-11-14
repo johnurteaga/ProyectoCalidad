@@ -1,0 +1,93 @@
+﻿@using System.Drawing
+@model IEnumerable<JPCSystem.Web.Models.PromedioViewModel>
+
+@{
+    ViewBag.Title = "ListaNotas";
+}
+
+<h2>ListaNotas</h2>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="form-inline">
+                <div class="col-xs-12 col-sm-12 col-lg-12" style="text-align: left">
+                    @Html.TextBox("criterioAlumnoNotas", "", new { @class = "w3-input w3-border col-lg-3", placeholder = "Alumno" })
+                </div>
+                <div class="col-xs-12 col-sm-12 col-lg-12">
+                    <div style="text-align: right">Fecha: @DateTime.Now.ToString("D")</div>
+                    @Html.DropDownList("AnioId", (SelectList) ViewBag.anio, "Trimestre", new {@class = "form-control"})
+                    @Html.DropDownList("Trimestre", (SelectList) ViewBag.trimestre, "Anio Escolar", new {@class = "form-control"})
+                    @Html.DropDownList("NivelId", new SelectList(ViewBag.nivel, "Id", "NombreNivel"), "Nivel", new {@class = "form-control"})
+                    @Html.DropDownList("GradoId", (SelectList) ViewBag.grado, "Grado", new {@class = "form-control"})
+                    @Html.DropDownList("SeccionId", (SelectList) ViewBag.seccion, "Seccion", new {@class = "form-control"})
+                    @Html.DropDownList("CursoId", (SelectList) ViewBag.curso, "Curso", new {@class = "form-control"})
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>
+                Alumno
+            </th>
+            <th>
+                Primer Trimestrae
+            </th>
+            <th>
+                Segundo Trimestre
+            </th>
+            <th>
+                Tercer Trimestre
+            </th>
+            <th>
+                Promedio Final Cualitativo
+            </th>
+            <th>
+                Promedio Final Vigesimal
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreAlumno)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DescripcionTrimestre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NotaT1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NotaT2, new { Color.Blue })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NotaT3)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NotaCuantitativa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PromedioFinal)
+                </td>
+                @*<td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-danger" })
+                    </td>*@
+            </tr>
+        }
+
+    </table>
+</div>
+
+@section scripts
+{
+<script src="~/Scripts/JPCSystemJs/Notas/Notas.js"></script>
+}

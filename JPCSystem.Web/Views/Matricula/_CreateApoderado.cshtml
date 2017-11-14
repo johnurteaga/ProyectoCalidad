@@ -1,0 +1,232 @@
+﻿@model JPCSystem.Domain.Apoderado
+
+@{
+    ViewBag.Title = "Create";
+    Layout = null;
+}
+
+<form id="matriculaApoderadoId">
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="row">
+            <div class="col-md-4">
+                @Html.Label("Tipo de Documento", new { htmlAttributes = new { @class = "form-control" } })
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.DocumentoId, new SelectList(ViewBag.documento, "Id", "NomDocumento"), "[-- Selecciona Documento --]", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.DocumentoId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                @Html.Label("Numero de Documento: ", new { htmlAttributes = new { @class = "form-control" } })
+                <div class="col-md-10">
+                    <div class="form-group">
+                        @Html.EditorFor(model => model.NroDocumento, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NroDocumento, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                @Html.Label("Apellido Paterno: ", new { htmlAttributes = new { @class = "form-control" } })
+                <div class="col-md-10">
+                    <div class="form-group">
+                        @Html.EditorFor(model => model.ApPaterno, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ApPaterno, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                @Html.Label("Apellido Materno: ", new { htmlAttributes = new { @class = "form-control" } })
+                <div class="col-md-10">
+                    <div class="form-group">
+                        @Html.EditorFor(model => model.ApMaterno, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ApMaterno, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                @Html.Label("Nombre(s): ", new { htmlAttributes = new { @class = "form-control" } })
+                <div class="col-md-10">
+                    <div class="form-group">
+                        @Html.EditorFor(model => model.Nombres, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Nombres, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                @Html.Label("Genero", new { htmlAttributes = new { @class = "form-control" } })
+                <div class="form-group">
+                    <div class="col-md-10">
+                        Masculino
+                        <div class="col-md-4">
+                            @Html.RadioButtonFor(model => model.Genero, "Masculino")
+                        </div>
+                        <br />
+                        Femenino
+                        <div class="col-md-4">
+                            @Html.RadioButtonFor(model => model.Genero, " Femenino")
+                        </div>
+                    </div>
+                </div>
+                @Html.ValidationMessageFor(model => model.Genero, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-4">
+                @Html.Label("Fecha de Nacimiento", new { htmlAttributes = new { @class = "form-control" } })
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <div class='input-group date' id='FechaNacimiento' style="width: 280px">
+                            @Html.EditorFor(model => model.FechaNacimiento, new { htmlAttributes = new { @class = "form-control" } })
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Genero, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                @Html.Label("Correo", new { htmlAttributes = new { @class = "form-control" } })
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Correo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Correo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                @Html.Label("Direccion", new { htmlAttributes = new { @class = "form-control" } })
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Direccion, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Direccion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                @Html.Label("Telefono", new { htmlAttributes = new { @class = "form-control" } })
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+                @Html.Label("Lugar de Trabajo", new { htmlAttributes = new { @class = "form-control" } })
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.LugarTrabajo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.LugarTrabajo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @* --------------------------------------------- Ubicacion --------------------------------------- *@
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-lg-4">
+                @Html.Label("Departamento", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.DropDownList("DepartamentoId", (SelectList)ViewBag.departamento, "Seleccione...", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.IdUbigeo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-4 col-lg-4">
+                @Html.Label("Provincia", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.DropDownList("ProvinciaId", (SelectList)ViewBag.provincia, null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.IdUbigeo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-4 col-lg-4">
+                @Html.Label("Distrito", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.IdUbigeo, (SelectList)ViewBag.distrito, null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.IdUbigeo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        @* ------------------------------------------------------------------------------------------ *@
+    </div>
+</form>
+
+<script>
+        $(document).ready(function () {
+
+            $("#FechaNacimiento").datepicker({
+                format: 'dd/MM/yyyy',
+                language: "es"
+            });
+
+
+            $("#DepartamentoId").change(function () {
+                $("#ProvinciaId").empty();
+                //$("#ProvinciaId").append('<option value="0">[Selecione Provincia]</option>');
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetProvincias","Apoderado")',
+                    dataType: 'json',
+                    data: { departmentId: $("#DepartamentoId").val() },
+                    success: function (data) {
+                        $.each(data, function (i, data) {
+                            $("#ProvinciaId").append('<option value="'
+                                + data.IdUbigeo + '">'
+                                + data.Provincia + '</option>');
+                        });
+                    },
+                    error: function (ex) {
+                        alert('Error al cargar las provincias.' + ex);
+                    }
+                });
+                return false;
+            });
+
+            $("#ProvinciaId").change(function () {
+                $("#IdUbigeo").empty();
+                //$("#IdUbigeo").append('<option value="0">Selecione...</option>');
+                $("#IdUbigeo").removeAttr('disabled');
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetDistritos","Apoderado")',
+                    dataType: 'json',
+                    data: { provinciaId: $("#ProvinciaId").val() },
+                    success: function (data) {
+                        $.each(data, function (i, data) {
+                            $("#IdUbigeo").append('<option value="'
+                                + data.IdUbigeo + '">'
+                                + data.Distrito + '</option>');
+                        });
+                    },
+                    error: function (ex) {
+                        alert('Error al cargar las provincias.' + ex);
+                    }
+                });
+                return false;
+            });
+        });
+    </script>

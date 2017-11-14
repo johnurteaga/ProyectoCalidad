@@ -1,0 +1,80 @@
+﻿@model IEnumerable<JPCSystem.Domain.Alumno>
+
+@{
+    Layout = null;
+}
+
+<table class="table ">
+    <tr>
+        <th>
+            Documento
+        </th>
+        <th>
+        Alumno
+        <th>
+            Direccion
+        </th>
+        <th>
+            Edad
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Correo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Genero)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroDocumento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApPaterno)
+                @Html.DisplayFor(modelItem => item.ApMaterno),
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Edad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Correo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono)
+            </td>
+            <td>
+                <div class="btn-group">
+                    <a onclick="editAlumno(@item.Id)" title="Edit"
+                       style="margin-right: 3px;">
+                        <i class="fa fa-pencil"></i>
+                        <span class="sr-only">Edit</span>
+                    </a>
+                    <a  onclick="DetailsAlumno(@item.Id)" title="Details"
+                        style="margin-right: 3px;">
+                        <i class="fa fa-list-alt"></i>
+                        <span class="sr-only">Details</span>
+                    </a>
+                    @*<a href="@Url.Action("Delete", new { id = item.Id })" title="Delete"
+                           style="margin-right: 3px;"
+                           class="btn btn-danger btn-sm">
+                            <i class="glyphicon glyphicon-trash"></i>
+                            <span class="sr-only">Delete</span>
+                        </a>*@
+                </div>
+            </td>
+        </tr>
+    }
+</table>

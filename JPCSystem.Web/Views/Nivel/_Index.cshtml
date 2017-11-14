@@ -1,0 +1,42 @@
+﻿@model IEnumerable<JPCSystem.Domain.Nivel>
+@{
+    Layout = "";
+}
+
+
+    <table id="myTable" class="table table-condensed">
+        <tr>
+            <th>
+                Nivel
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreNivel)
+                </td>
+                <td>
+                    <div class="btn-group">
+
+                        <a class="btnEditar" data-toggle="modal" data-id="@item.Id">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                            <span class="sr-only">Editar</span>
+                        </a>
+
+                        @*<a id="btnEliminaNivel" onclick="funcion(@item.Id)" data-target="modal" data-id="@item.Id"
+                           style="margin-right: 3px;">
+                            <i class="fa fa-lg fa-trash"></i>
+                        </a>*@
+
+                        @*@Html.ActionLink("Delete","Delete", new { id = item.Id },
+                            new { onclick = "return bootbox.confirm('Do you really want to delete the tag " + item.NombreNivel + "?')" })*@
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
+
+<script src="~/Scripts/JPCSystemJs/Nivel/Nivel.js"></script>

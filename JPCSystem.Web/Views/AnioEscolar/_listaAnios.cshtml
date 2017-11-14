@@ -1,0 +1,60 @@
+﻿@model IEnumerable<JPCSystem.Domain.AnioAcademico>
+@{
+    Layout = null;
+}
+<table class="table">
+    <tr>
+        <th>
+            Descripcion
+        </th>
+        <th>
+            Año Academico
+        </th>
+        <th>
+            Inicio de Clases
+        </th>
+        <th>
+            Matricula
+        </th>
+        <th>
+            Matricula Extemporanea
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Anio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaInicio) a 
+                @Html.DisplayFor(modelItem => item.FechaFin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaInicioMatricula) a
+                 @Html.DisplayFor(modelItem => item.FechaFinMatricula)
+            </td>
+            <td>
+                 @Html.DisplayFor(modelItem => item.FechaMatriculaExtemporanea)
+            </td>
+            <td>
+                <div class="btn-group">
+                    <a onclick="editAnio(@item.Id)" title="Edit" style="margin-right: 3px;">
+                        <i class="fa fa-pencil"></i>
+                        <span class="sr-only">Edit</span>
+                    </a>
+                    @*<a onclick="DetailsAnio(@item.Id)" title="Details" style="margin-right: 3px;">
+                        <i class="fa fa-list-alt"></i>
+                        <span class="sr-only">Details</span>
+                    </a>*@
+                </div>
+            </td>
+        </tr>
+    }
+
+</table>

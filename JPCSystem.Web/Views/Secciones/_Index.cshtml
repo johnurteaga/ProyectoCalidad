@@ -1,0 +1,85 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<JPCSystem.Domain.Seccion>
+
+@{
+    Layout = null;
+}
+
+<table class="table">
+    <tr>
+        <th>
+            Nivel
+        </th>
+        <th>
+            Grado
+        </th>
+        <th>
+            Sección
+        </th>
+        <th>
+            Capacidad
+        </th>
+        <th>
+            Matriculados
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Grado.Nivel.NombreNivel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Grado.NombreGrado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreSeccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Capasida)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Alumnos)
+            </td>
+            <td>
+                <div class="btn-group">
+
+                    <a class="btnEditarSeccion" data-id="@item.Id" style="margin-right: 3px;">
+                        <i class="fa fa-pencil"></i>
+                        <span class="sr-only">Editar</span>
+                    </a>
+
+                    @*<a id="btnEliminaSeccion" onclick="funcion(@item.Id)" data-target="modal" data-id="@item.Id"
+                       style="margin-right: 3px;">
+                        <i class="fa fa-trash"></i>
+                        <span class="sr-only">Delete</span>
+                    </a>*@
+                    
+                    <a class="btnEliminaSeccion" onclick="EliminarSeccion(@item.Id)" data-id="@item.Id" style="margin-right: 3px;">
+                        <i class="fa fa-trash"></i>
+                        <span class="sr-only">Delete</span>
+                    </a>
+
+                </div>
+            </td>
+        </tr>
+    }
+</table>
+
+
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, criterio = ViewBag.Criterio }),
+    PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions()
+    {
+        UpdateTargetId = "search_result",
+        HttpMethod = "Get",
+        InsertionMode = InsertionMode.Replace
+    }))
+
+
+
+<script src="~/Scripts/JPCSystemJs/Secciones/Secciones.js"></script>

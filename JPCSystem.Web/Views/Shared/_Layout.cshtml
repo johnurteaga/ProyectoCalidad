@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Joyas para Cristo</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @*
+    <link href="~/Componentes/bootstrap/css/bootstrap.min.css" rel="stylesheet" />*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    @*
+    <link href="~/Componentes/dist/css/AdminLTE.min.css" rel="stylesheet" />*@
+    <link href="~/Componentes/dist/css/skins/skin-blue.css" rel="stylesheet"/>
+    <link href="~/Content/vali.css" rel="stylesheet"/>
+    <link href="~/Content/w3.css" rel="stylesheet"/>
+    <link href="~/Content/bootstrap-datepicker.css" rel="stylesheet"/>
+    <link href="~/Content/toastr.css" rel="stylesheet"/>
+    <link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet"/>
+    <link href="~/Content/selectize/_template.min.css" rel="stylesheet"/>
+
+    @RenderSection("head", required: false)
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0px;
+        }
+
+        input, select, textarea {
+            max-width: 700px;
+        }
+
+        .form-control {
+            padding: 0 12px;
+        }
+
+        .modal-header {
+            background-color: #3c8dbc;color: #fff;
+        }
+    </style>
+    <meta name="description" content="The description of my page"/>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    @Html.Partial("_Header")
+    <div class="content-wrapper">
+        <div class="page-title" id="title">
+            @RenderSection("titulo", required: false)
+        </div>
+        <section class="content">
+            <div class="card">
+                    @RenderBody()
+            </div>
+        </section>
+    </div>
+</div>
+
+    <script src="~/Componentes/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="~/Scripts/jquery-1.12.4.js"></script>
+    <script src="~/Scripts/moment.min.js"></script>
+    <script src="~/Componentes/dist/js/app.min.js"></script>
+    <script src="~/Scripts/bootbox.min.js"></script>
+    <script src="~/Componentes/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.es.js"></script>
+    <script src="~/Scripts/toastr.js"></script>
+    <script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+    <script src="~/Content/selectize/_plug.min.js"></script>
+
+    <script type="text/javascript">
+        $('.modal').attr('data-backdrop', 'static');
+        $('.modal').attr('data-keyboard', false);
+
+    </script>
+</body>
+
+@RenderSection("scripts", required: false)
+</html>

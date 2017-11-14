@@ -1,0 +1,19 @@
+﻿@model JPCSystem.Web.Models.ViewModelAsistencia
+
+<table class="table">
+@for (int i = 0; i < Model.Alumnos.Count(); i++)
+{
+    <tr>
+        <td>
+            @Html.HiddenFor(modelItem => Model.Alumnos[i].IdAlumno)
+            @Html.DisplayFor(modelItem => Model.Alumnos[i].Alumno)
+        </td>
+        <td class="col-md-6">
+            A @Html.RadioButtonFor(modelItem => Model.Alumnos[i].Asis,"A")
+            &nbsp
+            F @Html.RadioButtonFor(modelItem => Model.Alumnos[i].Asis,"F")
+        </td>
+    </tr>
+}
+
+</table>

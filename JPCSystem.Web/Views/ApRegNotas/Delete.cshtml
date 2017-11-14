@@ -1,0 +1,80 @@
+﻿@model JPCSystem.Domain.AperturarRegistroNotas
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>AperturarRegistroNotas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaInicioPrimTrim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaInicioPrimTrim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaFinPrimTrim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaFinPrimTrim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaInicioSegTrim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaInicioSegTrim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaFinSegTrim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaFinSegTrim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaInicioTercTrim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaInicioTercTrim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaFinTercTrim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaFinTercTrim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AñoAcademicoId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AñoAcademicoId)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

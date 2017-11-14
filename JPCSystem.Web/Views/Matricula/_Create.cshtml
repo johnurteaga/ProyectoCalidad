@@ -1,0 +1,400 @@
+﻿@model JPCSystem.Domain.Matricula
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+<br />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <hr />
+
+
+
+    <div class="container">
+        <div class="panel-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Alumno</div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="form-group col-lg-6">
+                                    @Html.Label("Numero de Documento", htmlAttributes: new { @class = "control-label" })
+                                    @Html.Editor("NumDocAlum", new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessage("Dato Necesario", "", new { @class = "text-danger" })
+                                </div>
+
+                               
+
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-lg-6">
+                                    @Html.Label("Alumno", htmlAttributes: new { @class = "control-label" })
+                                    <input class="form-control " type="text" id="AlumnoId" name="AlumnoId" value="" readonly />
+                                    @Html.ValidationMessageFor(model => model.AlumnoId, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    @Html.ActionLink("Nuevo Alumno", "Create", "Alumno", new { }, new { @class = "btn btn-success", @id = "btnNuevoApod" })
+                                    @*<button type="submit" class="btn btn-success">Nuevo Alumno</button>*@
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Apoderado</div>
+                        <div class="panel-body">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @* **************************** Alumno *************************************** *@
+    <div class="row col-lg-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Alumno</div>
+            <div class="panel-body">
+                <div class="row">
+                    
+                    
+                </div>
+                
+                
+
+                
+                 
+            </div>
+            
+        </div>
+    </div>
+
+    <br />
+
+            @* *************************************************************************** *@
+            @* *****************************Apoderado************************************* *@
+            <br /><br />
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.Label("Tipo de Documento", htmlAttributes: new { @class = "control-label col-md-6" })
+                        <div class="col-md-6">
+                            @Html.DropDownList("DocumentoIdA", new SelectList(ViewBag.documento, "Id", "NomDocumento"), "Selecciona Documento", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Alumno.DocumentoId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.Label("Numero de Documento", htmlAttributes: new { @class = "control-label col-md-6" })
+                        <div class="col-md-4">
+                            @Html.Editor("NumDocApo", new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.FechaMatricula, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-inline">
+                            <div class="col-md-1">
+                                @*<button id="btnNuevoApod" type="button" class="btn btn-success " data-toggle="modal" data-target="#myModal2" href="/Apoderado/Create">Nuevo Apoderado </button>*@
+                                @Html.ActionLink("Nuevo Apoderado", "Create", "Apoderado", new { }, new { @class = "btn btn-success", @id = "btnNuevoApod" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Apoderado", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ApoderadoId, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ApoderadoId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @* ********************************************************************************* *@
+            <br /><br />
+            <div class="row">
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.Label("Fecha de Matricula", htmlAttributes: new { @class = "control-label col-md-6" })
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.FechaMatricula, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.FechaMatricula, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.Label("Año Academico", htmlAttributes: new { @class = "control-label col-md-6" })
+                        <div class="col-md-6">
+                            @Html.DropDownListFor(model => model.AnioAcademicoId, new SelectList(ViewBag.anio, "Id", "Descripcion"), "[Selecciona... ]", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.AnioAcademicoId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.Label("Nivel", htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.NivelId, new SelectList(ViewBag.nivel, "Id", "NombreNivel"), "[Seleccione Grado]", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.NivelId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.Label("Grado", htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.GradoId, new SelectList(ViewBag.grado, "Id", "NombreGrado"), "[Seleccione Grado]", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.GradoId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.Label("Seccion", htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.SeccionId, new SelectList(ViewBag.seccion, "Id", "NombreSeccion"), "[Selecciona Seccion]", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.SeccionId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-10">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                    @Html.ActionLink("Back to List", "Index", new { }, new { @class = "btn btn-success" })
+                </div>
+            </div>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#NivelId").change(function () {
+                $("#GradoId").empty();
+                $("#GradoId").append('<option value="0">[Selecione Grado]</option>');
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetNivel")',
+                    dataType: 'json',
+                    data: { nivelId: $("#NivelId").val() },
+                    success: function (data) {
+                        $.each(data, function (i, data) {
+                            $("#GradoId").append('<option value="'
+                                + data.Id + '">'
+                                + data.NombreGrado + '</option>');
+                        });
+                    },
+                    error: function (ex) {
+                        alert('Error al cargar los Grados.' + ex);
+                    }
+                });
+                return false;
+            });
+        });
+
+        $(document).ready(function () {
+            $("#GradoId").change(function () {
+                $("#SeccionId").empty();
+                $("#SeccionId").append('<option value="0">[Selecione Seccion]</option>');
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetSeccion")',
+                    dataType: 'json',
+                    data: { GradoId: $("#GradoId").val() },
+                    success: function (data) {
+                        $.each(data, function (i, data) {
+                            $("#SeccionId").append('<option value="'
+                                + data.Id + '">'
+                                + data.NombreSeccion + '</option>');
+                        });
+                    },
+                    error: function (ex) {
+                        alert('Error al cargar las Secciones.' + ex);
+                    }
+                });
+                return false;
+            });
+        });
+
+        //-------------------------------Alumno-----------------------------------------------
+
+        @*$(document).ready(function() {
+            $("#DocumentoId").change(function() {
+                $("#NumeroDocumentoId").empty();
+                $("#NumeroDocumentoId").append('<option value="0">[Seleccione Documento]</option>');
+                $("#AlumnoId").empty();
+                $("#AlumnoId").append('<option value="0"> </option>');
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetDocumentos")',
+                    dataType: 'json',
+                    data: { documentoId: $("#DocumentoId").val() },
+                    success: function(data) {
+                        $.each(data, function(i, data) {
+                            $("#NumeroDocumentoId").append('<option value="'
+                                + data.Id + '">'
+                                + data.NumeroDocumento + '</option>');
+                        });
+                    },
+                    error: function(ex) {
+                        alert('Error al cargar el Documento.' + ex);
+                    }
+                });
+                return false;
+            });
+        });
+
+        $(document).ready(function() {
+            $("#NumeroDocumentoId").change(function() {
+                $("#AlumnoId").empty();
+                //$("#AlumnoId").append('<option value="0">[Selecciona Alumno]</option>');
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetAlumnos")',
+                    dataType: 'json',
+                    data: { numeroDocumentoId: $("#NumeroDocumentoId").val() },
+                    success: function(data) {
+                        $.each(data, function(i, data) {
+                            $("#AlumnoId").append('<option value="'
+                                + data.Id + '">'
+                                + data.Nombre + ' ' + data.ApPaterno + ' ' + data.ApMaterno + '</option>');
+                        });
+                    },
+                    error: function(ex) {
+                        alert('Error al cargar el Alumno.' + ex);
+                    }
+                });
+                return false;
+            });
+        });*@
+
+
+        //--------------------------------------------------------------------------------//
+        //----------------------------------Apoderado ----------------------------------------------//
+
+        @*$(document).ready(function() {
+            $("#DocumentoIdA").change(function() {
+                $("#NumeroDocumentoIdA").empty();
+                $("#NumeroDocumentoIdA").append('<option value="0">[ Seleccione Documento ]</option>');
+                $("#ApoderadoId").empty();
+                $("#ApoderadoId").append('<option value="0"> </option>');
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetDocumentosApoderados")',
+                    dataType: 'json',
+                    data: { documentoIdA: $("#DocumentoIdA").val() },
+                    success: function(data) {
+                        $.each(data, function(i, data) {
+                            $("#NumeroDocumentoIdA").append('<option value="'
+                                + data.Id + '">'
+                                + data.NroDocumento + '</option>');
+                        });
+                    },
+                    error: function(ex) {
+                        alert('Error al cargar el Documento.' + ex);
+                    }
+                });
+                return false;
+            });
+        });
+
+
+        $(document).ready(function() {
+            $("#NumeroDocumentoIdA").change(function() {
+                $("#ApoderadoId").empty();
+                //$("#ApoderadoId").append('<option value="0">[Selecciona Alumno]</option>');
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetsApoderados")',
+                    dataType: 'json',
+                    data: { numeroDocumentoIdA: $("#NumeroDocumentoIdA").val() },
+                    success: function(data) {
+                        $.each(data, function(i, data) {
+                            $("#ApoderadoId").append('<option value="'
+                                + data.Id + '">'
+                                + data.Nombres + ' ' + data.ApPaterno + ' ' + data.ApMaterno + '</option>');
+                        });
+                    },
+                    error: function(ex) {
+                        alert('Error al cargar el Alumno.' + ex);
+                    }
+                });
+                return false;
+            });
+        });*@
+
+        //--------------------------------------------------------------------------------//
+        //--------------------------Buscar Alumno------------------------------//
+
+        $("#NumDocAlum").on("keyup", function () {
+            var alum = $(this).val();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetBuscaAlumno")',
+                dataType: 'json',
+                data: { alumnoNumDoc: alum },
+                success: function (data) {
+                    $.each(data, function (i, data) {
+                        $("#AlumnoId").val(data["Nombre"] + " " + data["ApPaterno"] + " " + data["ApMaterno"]);
+                    });
+                }
+            });
+        });
+
+        //$("#NumDocAlum").on("keyup", function () {
+        //    var dni = $(this).val()
+        //    $.post("Create/GetBuscaAlumno/?alumnoNumDoc=" + dni)
+        //	.done(function (data) {
+        //        console.log(data)
+        //	});
+        //});
+
+
+    </script>
+}
+
+
+
+
+@* Ventana Modal *@
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="modal-content">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

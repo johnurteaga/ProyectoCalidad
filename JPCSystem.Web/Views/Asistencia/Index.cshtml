@@ -1,0 +1,78 @@
+﻿@model JPCSystem.Web.Models.ViewModelAsistencia
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@section titulo
+{
+    <h2>Registro de Asistencia</h2>
+}
+
+<form id="formAsistencia">
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.FechaAsistencia)
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="form-inline">
+                        <div class="col-xs-12 col-sm-12 col-lg-12">
+                            @Html.Label("Seleccione Aula ", new { @class = "col-lg-2" })
+                            @Html.DropDownListFor(model => model.NivelId, new SelectList(ViewBag.nivel, "Id", "NombreNivel"), "Nivel", new { @class = "form-control col-lg-10" })
+                            @Html.DropDownListFor(model => model.GradoId, (SelectList)ViewBag.grado, null, new { @class = "form-control col-lg-10" })
+                            @Html.DropDownListFor(model => model.SeccionId, (SelectList)ViewBag.seccion, null, new { @class = "form-control col-lg-10" })
+                            <h4 style="text-align: right">Fecha: @Model.FechaAsistencia.ToString("D")</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="mensaje3">
+            @if (TempData["msj"] != null)
+            {
+                <div class="alert alert-success" style="text-align: center" id="success-alert3" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <strong>@TempData["msj"]</strong>
+                </div>
+            }
+        </div>
+        <hr />
+        <table class="table">
+            <tr>
+                <th class="col-md-6">
+                    Alumno
+                </th>
+                <th class="col-md-6">
+                    Asistio
+                </th>
+            </tr>
+        </table>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div id="asistencia">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group" style="text-align: right">
+            <div class="col-xs-12 col-sm-12 col-lg-12">
+                <input id="btnAsistenciaGuarda" type="button" value="Guardar" class="btn btn-primary" />
+                @Html.ActionLink("Listar Asistencias", "ListaAsistencias", new { }, new { @class = "btn btn-success" })
+            </div>
+        </div>
+
+    </div>
+
+
+</form>
+
+@section Scripts {
+   <script src="~/Scripts/JPCSystemJs/Asistencia/Asistencia.js"></script>
+}

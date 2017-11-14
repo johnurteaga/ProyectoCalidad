@@ -1,0 +1,80 @@
+﻿@model JPCSystem.Domain.Matricula
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Matricula</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaMatricula)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaMatricula)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnioAcademicoId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnioAcademicoId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AlumnoId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AlumnoId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApoderadoId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApoderadoId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NivelId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NivelId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GradoId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GradoId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SeccionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SeccionId)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

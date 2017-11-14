@@ -1,0 +1,169 @@
+﻿@model JPCSystem.Domain.AnioAcademico
+
+@{
+    ViewBag.Title = "Configurar Año Escolar";
+    var anio = DateTime.Now.AddYears(1).Year;
+
+}
+@*<style>
+        input{
+            max-width:
+        }
+    </style>*@
+<br />
+<br />
+<div class="w3-card-4">
+
+    <div class="w3-container w3-green">
+        <h2>Configurar Año Escolar  @anio </h2>
+    </div>
+
+    @*@using (Html.BeginForm())
+        {*@
+    <form action="/AnioEscolar/Create" method="post" class="w3-container">
+
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.Label("Descripción", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "w3-input" } })
+                    @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Inicio de Matricula", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FechaInicioMatricula, new { htmlAttributes = new { @class = "w3-input", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.FechaInicioMatricula, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Fin de Matricula", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FechaFinMatricula, new { htmlAttributes = new { @class = "w3-input", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.FechaFinMatricula, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Matricula Extemporanea", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FechaMatriculaExtemporanea, new { htmlAttributes = new { @class = "w3-input", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.FechaMatriculaExtemporanea, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Inicio de clases", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FechaInicio, new { htmlAttributes = new { @class = "w3-input", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.FechaInicio, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Fin de Clases", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FechaFin, new { htmlAttributes = new { @class = "w3-input", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.FechaFin, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="w3-btn w3-ripple w3-blue" />
+                    @Html.ActionLink("Back to List", "Index", new { }, new { @class = "w3-btn w3-ripple w3-green" })
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(function () {
+            //var year = "2018"
+            $('#FechaInicioMatricula , #FechaFinMatricula , #FechaMatriculaExtemporanea').datepicker({
+                format: "dd/mm/yyyy",
+                autoclose: true,
+                startDate: "01/01/"+(@anio),
+                endDate: "31/12/"+(@anio),
+                daysOfWeekDisabled: "0,6",
+                startView: 1,
+                weekStart: 1,
+
+                beforeShowYear: function (date){
+                    if (date.getFullYear() < (@anio) || date.getFullYear() > (@anio)) {
+                        return false;
+                    }
+                },
+
+                //beforeShowMonth: function (date){
+                //    if (date.getMonth() >= 2 ) {
+                //        return false;
+                //    }
+                //},
+            });
+
+            $('#FechaInicio').datepicker({
+                format: "dd/mm/yyyy",
+                autoclose: true,
+                startDate: "01/03/"+(@anio),
+                endDate: "30/04/"+(@anio),
+                daysOfWeekDisabled: "0,6",
+                startView: 1,
+                weekStart: 1,
+
+                beforeShowYear: function (date){
+                    if (date.getFullYear() < (@anio) || date.getFullYear() > (@anio)) {
+                        return false;
+                    }
+                },
+
+                //beforeShowMonth: function (date){
+                //    if (date.getMonth() < 2 || date.getMonth() > 3) {
+                //        return false;
+                //    }
+                //},
+            });
+
+            $('#FechaFin ').datepicker({
+                format: "dd/mm/yyyy",
+                autoclose: true,
+                startDate: "01/11/"+(@anio),
+                endDate: "31/12/"+(@anio),
+                daysOfWeekDisabled: "0,6",
+                startView: 1,
+                weekStart: 1,
+
+                beforeShowYear: function (date){
+                    if (date.getFullYear() < (@anio) || date.getFullYear() > (@anio)) {
+                        return false;
+                    }
+                },
+
+                //beforeShowMonth: function (date){
+                //    if (date.getMonth() < 2 || date.getMonth() > 3) {
+                //        return false;
+                //    }
+                //},
+            });
+
+            $("#FechaInicio").focusout(function (e) {
+                if (ValidaAnio($(this).val()) != (@anio) )
+                    $("#FechaInicio").val("");
+            })
+        });
+
+        function ValidaAnio(fecha) {
+            var capturaAnio = fecha.split("/")
+            return capturaAnio[2]
+        }
+    </script>
+}

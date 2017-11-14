@@ -1,0 +1,98 @@
+﻿@model IEnumerable<JPCSystem.Domain.Grado>
+
+<table class="table">
+    <tr>
+        <th> 
+            Nivel
+        </th>
+        <th>
+            Grado
+        </th>
+        @*<th>
+            Capacidad
+        </th>*@
+        @*<th>
+            Disponibles
+        </th>*@
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nivel.NombreNivel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreGrado)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.numAlumnos)
+            </td>*@
+            @*<td>
+               <span style="text-align: center" class="badge">@item.numAlumnos</span> 
+            </td>*@
+            <td>
+                <div class="btn-group">
+
+                    <a class="btnEditarGrado" data-toggle="modal" data-id="@item.Id">
+                        <i class="glyphicon glyphicon-pencil"></i>
+                        <span class="sr-only">Editar</span>
+                    </a>
+
+                    @*<a id="btnEliminaGrado" onclick="funcionGrado(@item.Id)" class="btn btn-warning" data-target="modal" data-id="@item.Id"
+                       style="margin-right: 3px;">
+                        <i class="fa fa-lg fa-trash"></i>
+                        <span class="sr-only">Delete</span>
+                    </a>*@
+                </div>
+            </td>
+        </tr>
+    }
+</table>
+
+
+<div id="myModalGrado" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content" id="modal-content">
+            <div class="modal-header" style="background-color: #3c8dbc;color: #fff">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Agregar Grado</h4>
+            </div>
+            <div class="modal-body" id="editModalBodyID">
+                
+            </div>
+            <div class="modal-footer">
+                <div class="col-xs-12 col-sm-12 col-lg-12" style="text-align: right">
+                    <input type="button" id="btnguardarGrado" value="Guardar" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+        var id = 0;
+        $(".btnEditarGrado").click(function (eve) {
+            $("#myModalGrado").modal("show");
+            id = $(this).data("id");
+            $("#myModalGrado").find(".modal-title").html("Editar Grado");
+            $("#myModalGrado").find('.modal-body').load("/Grados/Edit/" + $(this).data("id"));
+        });
+
+     //function funcionGrado(id) {
+     //       //var id = id;
+     //       console.log(id);
+     //       var link = "/Nivel/Delete/" + id
+     //       bootbox.confirm("Esta seguro de Eliminar este Grado?", function (result) {
+     //           if (result) {
+     //               var a = document.getElementById('btnEliminaNivel');
+     //               a.href = link;
+     //               $(".tblNivel").load(a.href);
+     //           }
+     //       });
+     //   }
+    </script>
